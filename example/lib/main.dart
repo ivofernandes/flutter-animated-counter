@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +26,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle textStyle = TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 16,
+      height: 22 / 26,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text("AnimatedFlipCounter Demo"),
@@ -32,6 +40,54 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Text(
+              'Example: Prefix 10 Suffix',
+              style: textStyle,
+            ),
+            MaterialButton(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
+              elevation: 10,
+              onPressed: () => setState(() {
+                _value++;
+              }),
+              color: Colors.green,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 11),
+                child: AnimatedFlipCounter(
+                  textStyle: textStyle,
+                  prefix: 'Prefix ',
+                  suffix: ' Suffix',
+                  value: _value,
+                ),
+              ),
+            ),
+            Text('fixed:'),
+            MaterialButton(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
+              elevation: 10,
+              onPressed: () => setState(() {
+                _value++;
+              }),
+              color: Colors.green,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 11),
+                child: AnimatedFlipCounter(
+                  digitSize: Size(15, 17),
+                  textStyle: textStyle,
+                  prefix: 'Prefix ',
+                  suffix: ' Suffix',
+                  value: _value,
+                ),
+              ),
+            ),
             AnimatedFlipCounter(
               value: 1000 + _value,
             ),

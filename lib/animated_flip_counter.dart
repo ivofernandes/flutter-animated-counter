@@ -60,6 +60,9 @@ class AnimatedFlipCounter extends StatelessWidget {
   /// The padding around each of the digits, defaults to 0.
   final EdgeInsets padding;
 
+  ///
+  final Size? digitSize;
+
   const AnimatedFlipCounter({
     Key? key,
     required this.value,
@@ -74,6 +77,7 @@ class AnimatedFlipCounter extends StatelessWidget {
     this.decimalSeparator = '.',
     this.mainAxisAlignment = MainAxisAlignment.center,
     this.padding = EdgeInsets.zero,
+    this.digitSize,
   })  : assert(fractionDigits >= 0, "fractionDigits must be non-negative"),
         assert(wholeDigits >= 0, "wholeDigits must be non-negative"),
         super(key: key);
@@ -117,7 +121,7 @@ class AnimatedFlipCounter extends StatelessWidget {
         value: digits[i].toDouble(),
         duration: duration,
         curve: curve,
-        size: prototypeDigit.size,
+        size: digitSize != null ? digitSize! : prototypeDigit.size,
         color: color,
         padding: padding,
       );
